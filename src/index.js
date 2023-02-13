@@ -30,3 +30,14 @@ module.exports = function check(str, bracketsConfig) {
   return stack.length === 0;
 };
 // if str = "|(||)|" WRONG!!!!!
+//////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/*function check(str, bracketsConfig) {
+  for (let i = 0; i < bracketsConfig.length; ) {
+      if (str.includes(bracketsConfig[i].join(""))) {
+          str = str.replace(bracketsConfig[i].join(""), "");
+          i = 0;
+      } else i++;
+  }
+  return str.length === 0 ? true : false;
+};*/
