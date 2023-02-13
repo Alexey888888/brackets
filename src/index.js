@@ -40,5 +40,5 @@ module.exports = function check(str, bracketsConfig) {
           i = 0;
       } else i++;
   }
-  return str.length === 0 ? true : false;
+  return str.length === 0 //  ? true : false;
 };*/
