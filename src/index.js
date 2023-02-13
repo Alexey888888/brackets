@@ -2,7 +2,6 @@ module.exports = function check(str, bracketsConfig) {
   const openBracket = [];
   const closeBracket = [];
   const bracketsPair = {};
-  let j = 0;
   for (let i = 0; i < bracketsConfig.length; i++) {
     openBracket.push(bracketsConfig[i][0]);
     closeBracket.push(bracketsConfig[i][1]);
@@ -12,17 +11,12 @@ module.exports = function check(str, bracketsConfig) {
   for (let i = 0; i < str.length; i++) {
     let currentSymbol = str[i];
 
-    if (openBracket.includes(currentSymbol)) {
+    if (
+      openBracket.includes(currentSymbol) && //
+      (!closeBracket.includes(currentSymbol) || //
+        !stack.includes(currentSymbol)) // // if str = "|(||)|" WRONG!!!!!
+    ) {
       stack.push(currentSymbol);
-
-      if (
-        closeBracket.includes(currentSymbol) &&
-        openBracket.includes(currentSymbol)
-        //stack.includes(currentSymbol) &&
-        // stack[stack.length - 1] === stack[stack.length - 2]
-      ) {
-        stack.pop();
-      }
     } else {
       if (stack.length === 0) {
         return false;
@@ -33,6 +27,6 @@ module.exports = function check(str, bracketsConfig) {
       } else return false;
     }
   }
-  //console.log(stack);
   return stack.length === 0;
 };
+// if str = "|(||)|" WRONG!!!!!
