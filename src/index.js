@@ -14,7 +14,8 @@ module.exports = function check(str, bracketsConfig) {
     if (
       openBracket.includes(currentSymbol) && //
       (!closeBracket.includes(currentSymbol) || //
-        !stack.includes(currentSymbol)) // // if str = "|(||)|" WRONG!!!!!
+        !stack.includes(currentSymbol) ||
+        stack[stack.length - 1] !== currentSymbol) // // for str = "|(||)|"
     ) {
       stack.push(currentSymbol);
     } else {
@@ -29,7 +30,7 @@ module.exports = function check(str, bracketsConfig) {
   }
   return stack.length === 0;
 };
-// if str = "|(||)|" WRONG!!!!!
+
 //////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 /*function check(str, bracketsConfig) {
